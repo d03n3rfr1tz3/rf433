@@ -1,0 +1,28 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "rf433"
+dynamic = ["version"]
+description = "433 MHz OOK sender for the Raspberry Pi, driven by the kernel driver gpio-ir-tx"
+readme = "README.md"
+license = { file = "LICENSE" }
+authors = [{ name = "Dirk Sarodnick" }]
+requires-python = ">=3.9"
+dependencies = []
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: POSIX :: Linux",
+    "Topic :: Home Automation",
+]
+
+[project.scripts]
+rf433 = "rf433.cli:main"
+
+[tool.setuptools.dynamic]
+version = { attr = "rf433.__version__" }
+
+[tool.setuptools.packages.find]
+include = ["rf433*"]

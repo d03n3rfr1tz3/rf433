@@ -1,0 +1,3 @@
+# Gives the LIRC device of the 433 MHz transmitter a fixed name.
+# Adjust DRIVERS when the transmitter does not use gpio-ir-tx.
+SUBSYSTEM=="lirc", DRIVERS=="gpio-ir-tx", SYMLINK+="lirc-433"
