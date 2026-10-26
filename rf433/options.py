@@ -82,8 +82,9 @@ class _SectionReader:
         self.used: set[str] = set()
 
     def text(self, key: str, default: str) -> str:
+        """A text; an empty value means the default."""
         self.used.add(key)
-        return self.values.get(key, default)
+        return self.values.get(key, "") or default
 
     def number(self, key: str, default, minimum: int, maximum: int | None = None):
         """An integer in the given range; an empty value means the default (None for cpu_core)."""

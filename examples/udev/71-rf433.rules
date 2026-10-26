@@ -1,3 +1,6 @@
-# Gives the LIRC device of the 433 MHz transmitter a fixed name.
-# Adjust DRIVERS when the transmitter does not use gpio-ir-tx.
+# Gives the LIRC device of the 433 MHz transmitter a fixed name: /dev/lirc-433
 SUBSYSTEM=="lirc", DRIVERS=="gpio-ir-tx", SYMLINK+="lirc-433"
+
+# With more than one gpio-ir-tx device (e.g. an IR transmitter as well) match the device tree node
+# instead; it is named after the GPIO in hex (GPIO17 = 11), check with: udevadm info -a -n /dev/lirc0
+#SUBSYSTEM=="lirc", KERNELS=="gpio-ir-transmitter@11|11.gpio-ir-transmitter", SYMLINK+="lirc-433"

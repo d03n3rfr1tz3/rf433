@@ -42,6 +42,8 @@ def main(argv: Sequence[str] | None = None,
          transmitter_factory: Callable[[Options], Transmitter] = create_transmitter,
          recorder_factory: Callable[[Options], Recorder] = create_recorder) -> int:
     args = build_parser([command() for command in COMMANDS]).parse_args(argv)
+    if hasattr(sys.stdout, "reconfigure"):
+        sys.stdout.reconfigure(encoding="utf-8")
     try:
         options = Options.load(args.options, device=args.device, codes=args.codes)
         return args.handler.run(args, Context(options, transmitter_factory, recorder_factory)) or 0
